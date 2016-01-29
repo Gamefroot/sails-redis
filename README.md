@@ -45,6 +45,44 @@ config: {
 };
 ```
 
+Alternatively the URL notation for configuration can be used for configuration:
+
+``` javascript
+config {
+  url: 'redis://h:abc123@host.com:6379'
+}
+
+// Equivalent to:
+// config: {
+//   port: 6379,
+//   host: 'host.com'
+//   password: 'abc123'
+// }
+// Other portions of the URL, including the 'username' 'h' are ignored
+```
+
+Note that if both the 'url' notation and the 'host', 'port' and / or 'password' notations are used, the non-url configuration options will take precedence.
+
+### With Sails
+
+When using this library with sails add the config below to your `config/connections.js` file:
+
+```js
+  },
+  
+  redis: {
+    port: 6379,
+    host: 'localhost'
+  }
+
+```
+
+And then you can make it the default by changing `config/models.js` to show:
+
+```js
+  connection: 'redis',
+```
+
 #### Low-Level Configuration (for redis driver)
 
 Configuration for the underlying Redis driver itself is located as an object under the `options`.  The following options are available:
